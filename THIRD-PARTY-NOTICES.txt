@@ -1,0 +1,7 @@
+LICENSE.txt covers original application code; third-party materials retain their own rights and licenses.
+
+Fusion Pixel Font: copyright (c) 2022 TakWolf; SIL Open Font License 1.1.
+Full license: fonts/LICENSE.txt
+
+Pearl visuals adapted from More Iterators/editor/pearls.js.
+Broadcast symbol uses Rain World's CollectionsMenu Symbol_Satellite atlas element.
