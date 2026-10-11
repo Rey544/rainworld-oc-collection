@@ -421,7 +421,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .image-import-wizard{width:920px;max-width:min(920px,calc(100vw - 32px));max-height:94dvh}.image-import-wizard .sheet-heading{display:flex;align-items:center;flex-wrap:nowrap;gap:16px;margin-bottom:10px}.image-import-wizard .sheet-heading h2{flex:1;min-width:0;overflow-wrap:anywhere}.image-import-wizard .sheet-heading .import-cancel{flex:0 0 auto;white-space:nowrap;writing-mode:horizontal-tb;width:auto;min-width:4em;height:44px;font-size:calc(16px * var(--ui-text-scale, 1));line-height:1.2;text-align:right}.import-progress{font-size:calc(14px * var(--ui-text-scale, 1));color:var(--muted);line-height:1.6;margin-bottom:12px;overflow-wrap:anywhere}.import-error{color:var(--danger);font-size:calc(14px * var(--ui-text-scale, 1));line-height:1.6;margin:8px 0}.import-error:empty{display:none}.import-metadata{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.import-metadata label{display:flex;flex-direction:column;gap:7px;font-size:calc(14px * var(--ui-text-scale, 1));min-width:0}.import-metadata input,.import-metadata textarea,.import-metadata select{width:100%;min-width:0}.import-metadata label:has(textarea),.import-taxonomy{grid-column:1/-1}.import-taxonomy{border:1px solid var(--line);padding:0 12px}.import-taxonomy>summary{padding:12px 0;cursor:pointer;font-size:calc(14px * var(--ui-text-scale, 1));line-height:1.5;overflow-wrap:anywhere}.import-taxonomy-body{display:grid;gap:12px;padding:4px 0 14px}.import-taxonomy-path{display:grid;grid-template-columns:1fr 1fr;gap:12px}.import-tag-entry{display:flex;align-items:center;gap:10px}.import-tag-entry>input{flex:1;min-width:0}.import-tag-entry>button{flex:0 0 auto;white-space:nowrap}.import-selected-tags,.import-tag-choices{display:flex;flex-wrap:wrap;gap:8px}.import-selected-tags:empty{display:none}.import-selected-tag,.import-tag-choices .tag-choice{padding:7px 10px;border:1px solid var(--line);font-size:calc(14px * var(--ui-text-scale, 1));line-height:1.4;overflow-wrap:anywhere;max-width:100%}.import-selected-tag,.import-tag-choices .tag-choice.active{border-color:var(--active);color:var(--active)}.import-format>label{display:flex;gap:16px;align-items:center;margin:12px 0 20px;font-size:calc(14px * var(--ui-text-scale, 1))}.image-import-wizard .oc-crop-stage{height:320px;min-height:200px;max-height:42vh}.image-import-wizard .oc-crop-editor{gap:12px}.image-import-wizard .sheet-actions{position:sticky;bottom:-20px;background:var(--bg);padding:18px 0;margin-bottom:0;border-top:1px solid var(--line)}
 @media(max-width:600px){.import-metadata{grid-template-columns:1fr}.import-metadata label{grid-column:1}.import-taxonomy-path{grid-template-columns:1fr 1fr}.import-taxonomy-path label{grid-column:auto}.image-import-wizard .sheet-actions{bottom:-20px}.image-import-wizard .oc-crop-stage{height:260px}}
 
-</style><link rel="stylesheet" href="region-editor.css"><link rel="stylesheet" href="iterator-icons.css"><link rel="stylesheet" href="ui-preferences.css"><link rel="stylesheet" href="viewport-safety.css"><link rel="stylesheet" href="mobile-ui.css"><script src="iterator-icons.js"></script><script src="ui-preferences.js"></script><script src="map-records.js"></script></head>
+</style><link rel="stylesheet" href="region-editor.css?v=20261011-controls7"><link rel="stylesheet" href="iterator-icons.css?v=20261011-controls7"><link rel="stylesheet" href="ui-preferences.css?v=20261011-controls7"><link rel="stylesheet" href="viewport-safety.css?v=20261011-controls7"><link rel="stylesheet" href="mobile-ui.css?v=20261011-controls7"><script src="iterator-icons.js?v=20261011-controls7"></script><script src="ui-preferences.js?v=20261011-controls7"></script><script src="map-records.js?v=20261011-controls7"></script></head>
 <body>
 <div id="notice" class="notice" role="alert" hidden=""><span id="noticeText"></span><button id="closeNotice" aria-label="关闭提示">×</button></div>
 <main id="listScreen" class="list-screen">
@@ -3378,7 +3378,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
                     if (k === "broadcast" && d.sourceNode) top.append(node("span", d.sourceNode, "document-source"));
                 } else if (k === "slugcat" || k === "character") {
                     const icon = k === "character" ? action("", () => options.onColor?.(item), "document-icon iterator-record-button") : node("span", undefined, "document-icon slugcat-icon");
-                    if (k === "character") icon.setAttribute("aria-label", "更换迭代器图标");
+                    if (k === "character") icon.setAttribute("aria-label", "更换迭代器头像");
                     if (d.iconData) {
                         const image = node("img");
                         image.src = d.iconData;
@@ -3586,7 +3586,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
                         placeholder: "例如 本地群组"
                     });
                 }
-                if (k === "slugcat") {
+                if (k === "slugcat" || k === "character") {
                     if (k === "slugcat") field("能力介绍", "abilities", {
                         multiline: true
                     });
@@ -3602,6 +3602,13 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
                     preview.alt = k === "character" ? "角色图标" : "蛞蝓猫图标";
                     preview.hidden = !value().iconData;
                     if (value().iconData) preview.src = value().iconData;
+                    if (k === "character") {
+                        iconBox.append(node("span", "头像"));
+                        activeIterator = {
+                            focus: () => pick.focus(),
+                            choose: () => input.click()
+                        };
+                    }
                     iconBox.append(preview, pick, remove, input);
                     host.append(iconBox);
                     input.onchange = async () => {
@@ -3685,7 +3692,6 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
                         onChange: update,
                         notify: notify
                     });
-                    activeIterator = iteratorEditor;
                 }
                 if (k === "pearl" || k === "broadcast") {
                     if (k === "pearl") {
@@ -8312,15 +8318,31 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
                     } else newText();
                 };
                 $("listDisplaySettings").append(window.OCUIPreferences.gear());
-                $("listDisplaySettings").onclick = () => window.OCUIPreferences.open(isImage() ? {} : {
-                    columns: state.textColumns || 1,
-                    onColumns: value => {
-                        state.textColumns = value;
-                        try {
-                            localStorage.setItem(prefKey("text-columns"), String(value));
-                        } catch {}
-                        renderList();
-                    }
+                $("listDisplaySettings").title = "列数、字号与网页比例";
+                $("listDisplaySettings").onclick = () => window.OCUIPreferences.open({
+                    columnSettings: [ {
+                        label: "图片列数",
+                        min: 2,
+                        value: state.columns || 2,
+                        onChange: value => {
+                            state.columns = value;
+                            try {
+                                localStorage.setItem(prefKey("columns"), String(value));
+                            } catch {}
+                            renderList();
+                        }
+                    }, {
+                        label: "文字列数",
+                        min: 1,
+                        value: state.textColumns || 1,
+                        onChange: value => {
+                            state.textColumns = value;
+                            try {
+                                localStorage.setItem(prefKey("text-columns"), String(value));
+                            } catch {}
+                            renderList();
+                        }
+                    } ]
                 });
                 $("textBackButton").onclick = leaveDetail;
                 $("imageExitButton").onclick = leaveDetail;
@@ -8639,7 +8661,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     }
 })();
 </script>
-<script src="download-ui.js"></script><script src="region-core.js"></script><script src="map-export.js"></script><script src="region-renderer.js"></script><script src="region-editor.js"></script>
+<script src="download-ui.js?v=20261011-controls7"></script><script src="region-core.js?v=20261011-controls7"></script><script src="map-export.js?v=20261011-controls7"></script><script src="region-renderer.js?v=20261011-controls7"></script><script src="region-editor.js?v=20261011-controls7"></script>
 
 
 </body></html>

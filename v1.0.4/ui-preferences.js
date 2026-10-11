@@ -81,8 +81,8 @@
     function open(options = {}) {
         const prior = document.getElementById("uiFontDialog");
         if (prior) {
-            prior.showModal();
-            return;
+            prior.close();
+            prior.remove();
         }
         const d = document.createElement("dialog");
         d.id = "uiFontDialog";
@@ -123,7 +123,32 @@
         }), button("完成", () => d.close()));
         const fontLabel = document.createElement("div");
         fontLabel.textContent = "字号大小";
-        d.append(title, fontLabel, controls);
+        d.append(title);
+        const columnSettings = options.columnSettings || (options.onColumns ? [ {
+            label: "文字列数",
+            min: 1,
+            value: options.columns,
+            onChange: options.onColumns
+        } ] : []);
+        for (const setting of columnSettings) {
+            const label = document.createElement("label");
+            label.className = "ui-columns-setting";
+            label.textContent = setting.label;
+            const select = document.createElement("select");
+            select.setAttribute("aria-label", setting.label);
+            const min = setting.min || 1;
+            for (let n = min; n <= 6; n++) {
+                const option = document.createElement("option");
+                option.value = n;
+                option.textContent = n + "列";
+                select.append(option);
+            }
+            select.value = setting.value || min;
+            select.onchange = () => setting.onChange(Math.max(min, Math.min(6, +select.value || min)));
+            label.append(select);
+            d.append(label);
+        }
+        d.append(fontLabel, controls);
         const pageLabel = document.createElement("div");
         pageLabel.textContent = "网页比例";
         const pageControls = document.createElement("div");
@@ -143,23 +168,6 @@
         pageControls.append(button("−", () => pageUpdate(pagePercent - 5)), pageSlider, button("＋", () => pageUpdate(pagePercent + 5)), pageOutput);
         d.append(pageLabel, pageControls);
         pageUpdate(pagePercent);
-        if (options.onColumns) {
-            const label = document.createElement("label");
-            label.className = "ui-columns-setting";
-            label.textContent = "文字列数";
-            const select = document.createElement("select");
-            select.setAttribute("aria-label", "文字列数");
-            for (let n = 1; n <= 6; n++) {
-                const option = document.createElement("option");
-                option.value = n;
-                option.textContent = n + "列";
-                select.append(option);
-            }
-            select.value = options.columns || 1;
-            select.onchange = () => options.onColumns(Math.max(1, Math.min(6, +select.value || 1)));
-            label.append(select);
-            d.append(label);
-        }
         d.append(actions);
         d.addEventListener("close", () => d.remove());
         document.body.append(d);

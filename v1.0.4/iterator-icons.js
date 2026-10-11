@@ -192,7 +192,6 @@
         model = normalize(model);
         return {
             characterColor: model.color,
-            iconData: png(model),
             appearance: {
                 ...item.details?.appearance,
                 iteratorIcon: {
@@ -249,20 +248,11 @@
             d.close();
         });
         for (const doc of projectIcons(project, excludeId)) {
-            const model = fromRecord(doc), legacy = doc.details?.iconData && !doc.details?.appearance?.iteratorIcon, icon = add(doc.title || "未命名迭代器", model, async () => {
-                try {
-                    const chosen = legacy ? imageModel(await loadImage(doc.details.iconData), model.color) : model;
-                    if (alive) {
-                        onChoose(chosen, doc);
-                        d.close();
-                    }
-                } catch (e) {
-                    if (alive) status.textContent = e.message;
-                }
+            const model = fromRecord(doc);
+            add(doc.title || "未命名迭代器", model, () => {
+                onChoose(model, doc);
+                d.close();
             });
-            if (legacy) loadImage(doc.details.iconData).then(img => {
-                if (alive) paint(icon, imageModel(img, model.color));
-            }).catch(() => {});
         }
         const input = node("input");
         input.type = "file";
@@ -319,11 +309,11 @@
         };
     }
     function mount(host, item, {project: project, onChange: onChange, notify: notify} = {}) {
-        const root = node("section", undefined, "iterator-editor"), heading = node("div", undefined, "iterator-heading"), iconButton = button("", () => choose()), small = canvas(), label = node("strong", "迭代器图标"), dimensions = node("span", "21 × 19", "iterator-dimensions"), toolbar = node("div", undefined, "iterator-tools"), stage = node("div", undefined, "iterator-stage"), board = node("canvas"), color = node("input"), hexInput = node("input"), sym = node("details", undefined, "iterator-symmetry"), symRow = node("div", undefined, "iterator-tools");
+        const root = node("section", undefined, "iterator-editor"), heading = node("div", undefined, "iterator-heading"), iconButton = button("", () => choose()), small = canvas(), label = node("strong", "地图图标"), dimensions = node("span", "21 × 19", "iterator-dimensions"), toolbar = node("div", undefined, "iterator-tools"), stage = node("div", undefined, "iterator-stage"), board = node("canvas"), color = node("input"), hexInput = node("input"), sym = node("details", undefined, "iterator-symmetry"), symRow = node("div", undefined, "iterator-tools");
         let destroyed = false, picker = null, canvasDialog = null, loading = false, version = 0, tool = "brush", size = 1, axisX = false, axisY = false, boardBackground = "white", drag = null, preview = null;
         const timeline = history(fromRecord(item));
         root.tabIndex = 0;
-        root.setAttribute("aria-label", "迭代器图标画板");
+        root.setAttribute("aria-label", "迭代器地图图标画板");
         iconButton.title = "更换图标";
         iconButton.setAttribute("aria-label", "更换迭代器图标");
         iconButton.append(small);
@@ -614,23 +604,6 @@
             }
         });
         refresh();
-        if (item.details?.iconData && !item.details?.appearance?.iteratorIcon) {
-            loading = true;
-            const serial = version;
-            refresh();
-            loadImage(item.details.iconData).then(img => {
-                if (destroyed || version !== serial) return;
-                loading = false;
-                timeline.reset(imageModel(img, timeline.get().color));
-                refresh();
-            }).catch(e => {
-                if (!destroyed) {
-                    loading = false;
-                    notify?.(e.message);
-                    refresh();
-                }
-            });
-        }
         return {
             focus() {
                 root.scrollIntoView?.({
@@ -650,7 +623,7 @@
     }
     const mapCache = new Map;
     function resolve(marker, docs) {
-        const doc = (docs || []).find(d => d.id === marker.iteratorDocId && isIterator(d)), model = doc ? fromRecord(doc) : normalize(marker.iteratorIcon), src = doc ? doc.details?.appearance?.iteratorIcon ? "" : doc.details?.iconData || "" : marker.iteratorIcon ? "" : marker.icon || "", color = marker.iteratorColorMode === "own" ? model.color : "#ffffff";
+        const doc = (docs || []).find(d => d.id === marker.iteratorDocId && isIterator(d)), model = doc ? fromRecord(doc) : normalize(marker.iteratorIcon), src = doc ? "" : marker.iteratorIcon ? "" : marker.icon || "", color = marker.iteratorColorMode === "own" ? model.color : "#ffffff";
         return {
             model: model,
             src: src,
