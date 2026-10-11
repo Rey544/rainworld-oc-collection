@@ -1,0 +1,130 @@
+html,body{-webkit-text-size-adjust:100%;text-size-adjust:100%;overscroll-behavior:none}
+button,a,input,select,textarea{touch-action:manipulation}
+html body dialog[open],html.ui-compact body dialog[open]{box-sizing:border-box;position:fixed;inset:calc(var(--ui-viewport-top) / var(--ui-page-scale) + var(--ui-safe-top) + 12px) calc(var(--ui-safe-right) + 12px) calc(var(--ui-safe-bottom) + 12px) calc(var(--ui-viewport-left) / var(--ui-page-scale) + var(--ui-safe-left) + 12px);margin:auto;min-width:0!important;min-height:0;max-width:calc(var(--ui-layout-width) - 24px - var(--ui-safe-left) - var(--ui-safe-right))!important;max-height:calc(var(--ui-layout-height) - 24px - var(--ui-safe-top) - var(--ui-safe-bottom))!important;overflow:auto;overscroll-behavior:contain;overflow-wrap:anywhere}
+dialog>*{min-width:0;max-width:100%;box-sizing:border-box}
+dialog :is(form,fieldset,.field-pair,.map-row,.sheet-actions,.iterator-tools,.iterator-actions){min-width:0;max-width:100%;flex-wrap:wrap}
+dialog :is(input,select,textarea){min-width:0!important;max-width:100%!important}
+dialog .sheet-heading{flex-wrap:nowrap;gap:12px;align-items:flex-start}
+dialog .sheet-heading h2{min-width:0;flex:1;line-height:1.4}
+dialog .sheet-heading>button{width:auto;min-width:44px;height:auto;min-height:44px;flex:none;white-space:nowrap;line-height:1.2;font-size:calc(18px * var(--ui-text-scale, 1))}
+dialog .sheet-actions{gap:12px;margin-top:16px}
+dialog .sheet-actions>*{min-height:44px;max-width:100%;white-space:normal;overflow-wrap:anywhere}
+dialog.file-result{width:min(440px,calc(var(--ui-layout-width) - 24px));padding:16px;color:var(--text);background:var(--bg);border:1px solid var(--line)}
+.file-result .sheet-heading{margin-bottom:12px}.file-name{overflow-wrap:anywhere}.file-status{font-size:calc(13px * var(--ui-text-scale, 1));color:var(--muted);margin-top:12px}.file-status:empty{display:none}.file-result .sheet-actions{align-items:center}.file-result .sheet-actions a{display:inline-flex;align-items:center;text-decoration:none}
+#mapEditor #mapSideClose{flex:0 0 40px;font-size:calc(20px * var(--ui-text-scale, 1))!important;border:0!important;min-height:40px;align-self:flex-start}
+#mapEditor .map-pearl-card{max-width:calc(100% - 16px);max-height:calc(100% - 16px);overflow-wrap:anywhere}
+#mapEditor .map-brush-popover,#mapEditor .map-tool-options{position:static!important;inset:auto!important;transform:none;flex:1 1 100%;width:100%;min-width:0;max-width:100%;flex-wrap:wrap;box-shadow:none}
+#mapEditor #mapTools:has(.map-brush-popover),#mapEditor #mapTools:has(.map-tool-options){flex:1 1 100%}
+#mapEditor .map-dock .map-tool-options button{white-space:normal}
+#mapEditor .map-layer-switch{bottom:var(--dock-clearance,72px);max-width:calc(100% - 24px)}
+#mapEditor .map-layer-switch button{min-width:0;white-space:normal;overflow-wrap:anywhere}
+#mapEditor .map-zoom{max-width:calc(100% - 16px);flex-wrap:wrap;bottom:calc(var(--dock-clearance,72px) + 44px)}
+#mapEditor .map-side-content :is(input,select,label,.map-layer,.map-row,.map-opacity){min-width:0;max-width:100%}
+#mapEditor .map-layer{flex-wrap:wrap}#mapEditor .map-layer .name{flex:1 1 6em;min-width:0}
+#mapEditor .map-opacity{grid-template-columns:auto minmax(20px,1fr) auto}
+#mapEditor .map-record-binding,#mapEditor .map-side-tabs{flex-wrap:wrap}
+html.ui-compact .list-header{padding-top:calc(8px + var(--ui-safe-top));padding-bottom:12px;gap:6px}
+html.ui-compact .list-actions{gap:8px;flex-wrap:wrap}
+html.ui-compact :is(.text-detail-header,.image-detail-header){padding-top:calc(8px + var(--ui-safe-top));padding-bottom:10px;flex-wrap:wrap;gap:8px;min-width:0}
+html.ui-compact :is(.detail-save-actions,.image-save-footer,.editor-tabs,.text-category){flex-wrap:wrap;min-width:0;max-width:100%}
+html.ui-compact :is(.back-button,.detail-save-actions>button,.image-detail-header h1 button,.inline-title){font-size:calc(20px * var(--ui-text-scale, 1));min-width:0;max-width:100%;overflow-wrap:anywhere}
+html.ui-compact .image-save-footer{padding-top:12px;gap:8px}
+html.ui-compact .text-content,html.ui-compact .text-preview{min-height:120px}
+html.ui-compact #mapEditor .map-top{padding:calc(4px + var(--ui-safe-top)) 10px 0;gap:0 8px;max-height:36%}
+html.ui-compact #mapEditor .map-top #mapProject{flex:1 1 auto;max-width:100%;font-size:calc(18px * var(--ui-text-scale, 1));line-height:1.3;min-height:40px;padding:4px}
+html.ui-compact #mapEditor .map-header-actions{flex:1 1 auto;gap:2px 6px;align-items:center;justify-content:flex-end}
+html.ui-compact #mapEditor .map-header-actions>button{font-size:calc(14px * var(--ui-text-scale, 1));min-height:40px;padding:4px 6px;white-space:nowrap}
+html.ui-compact #mapEditor #mapSaved{font-size:calc(12px * var(--ui-text-scale, 1));white-space:nowrap}
+html.ui-compact .pixel-gear{width:20px;height:20px}
+html.ui-compact #mapEditor .map-subbar{padding:0 8px 4px;max-height:24%;min-height:0}
+html.ui-compact #mapEditor .map-crumb{gap:0 4px}
+html.ui-compact #mapEditor .map-crumb>button{padding:4px;font-size:calc(13px * var(--ui-text-scale, 1));min-height:36px}
+html.ui-compact #mapEditor .map-body{flex-direction:column}
+html.ui-compact #mapEditor .map-stage{flex:1 1 0;min-height:0;width:100%}
+html.ui-compact #mapEditor .map-side{position:relative;inset:auto;width:100%;max-width:100%;flex:0 1 46%;height:46%;max-height:46%;border-left:0;border-top:1px solid var(--line)}
+html.ui-compact #mapEditor .map-side-tabs{padding:4px 10px;gap:8px}
+html.ui-compact #mapEditor .map-side-tabs button{min-height:40px;font-size:calc(14px * var(--ui-text-scale, 1))!important}
+html.ui-compact #mapEditor .map-side-content{padding:8px 12px}
+html.ui-compact #mapEditor .map-dock{right:calc(6px + var(--ui-safe-right));bottom:6px;padding:2px;max-width:calc(100% - 12px - var(--ui-safe-left) - var(--ui-safe-right));max-height:55%;gap:0}
+html.ui-compact #mapEditor #mapTools button,html.ui-compact #mapEditor .map-dock>button{font-size:calc(13px * var(--ui-text-scale, 1))!important;min-height:40px;padding:5px 6px!important;line-height:1.3}
+html.ui-compact .bottom-tabs,html.ui-compact body.map-active .bottom-tabs{padding-top:4px;padding-bottom:calc(4px + var(--ui-safe-bottom));max-height:18%}
+html.ui-compact .bottom-tabs>button,html.ui-compact body.map-active .bottom-tabs>button{font-size:calc(18px * var(--ui-text-scale, 1));min-height:40px}
+html.ui-compact dialog{padding:12px}
+html.ui-compact dialog :is(.field-pair,.map-background-field){display:flex;flex-direction:column;align-items:stretch;gap:10px}
+html.ui-compact dialog .map-row>label{flex:1 1 8em;min-width:0}
+html.ui-compact dialog .export-options{grid-template-columns:minmax(0,1fr)}
+html.ui-compact :is(.iterator-heading,.iterator-tools,.iterator-actions){flex-wrap:wrap;min-width:0}
+html.ui-compact .iterator-library{grid-template-columns:repeat(auto-fit,minmax(min(100%,110px),1fr))}
+@media(pointer:coarse){input:not([type=checkbox]):not([type=radio]):not([type=color]):not([type=range]),select,textarea{font-size:max(calc(16px / var(--ui-page-scale)),1em)!important}button,.outlined{min-height:calc(44px / var(--ui-page-scale))}input[type=checkbox]{min-width:18px;min-height:18px}}
+html.ui-short #mapEditor .map-top{max-height:24%;padding-top:var(--ui-safe-top)}
+html.ui-short #mapEditor .map-subbar{max-height:16%}
+html.ui-short #mapEditor .map-side{flex-basis:50%;height:auto;max-height:100%;width:50%;max-width:50%;border-top:0;border-left:1px solid var(--line)}
+html.ui-short #mapEditor .map-body{flex-direction:row}
+html.ui-short #mapEditor .map-side-tabs{padding:2px;gap:2px}
+html.ui-short #mapEditor .map-side-tabs button{font-size:calc(12px * var(--ui-text-scale, 1))!important;padding:2px!important}
+
+@font-face{font-family:'Map Narrow';src:url('map-fonts/Rajdhani-Medium.ttf') format('truetype');font-weight:100 900;font-style:normal;font-display:swap}
+.map-room-paint-layers{margin:8px 0;padding-left:10px;border-left:1px solid var(--line);max-width:100%;min-width:0}
+.map-room-paint-layers .map-row{display:flex;align-items:center;flex-wrap:nowrap;gap:4px}
+.map-room-paint-layers .name{flex:1;min-width:0;text-align:left;white-space:normal;overflow-wrap:anywhere}
+.map-room-paint-layers .name.active{box-shadow:inset 2px 0 #fff;background:#252525}
+.map-font-sample{padding:12px 0;line-height:1.6;color:#fff;font-size:calc(18px * var(--ui-text-scale, 1));overflow-wrap:anywhere}
+#mapEditor #mapCrossRoomControl{display:flex;align-items:center;flex:none}
+#mapEditor #mapCrossRoomControl[hidden]{display:none}
+#mapEditor #mapCrossRoomEdit{width:auto;min-width:0;max-width:none;gap:5px;padding:6px 8px!important;white-space:nowrap;line-height:1.3;font-size:calc(12px * var(--ui-text-scale, 1))}
+#mapEditor #mapCrossRoomEdit span{white-space:nowrap;word-break:keep-all;overflow-wrap:normal}
+#mapEditor #mapSave.needs-save{border-color:#eee;box-shadow:inset 0 -2px #eee}
+#mapEditor .map-dock button{white-space:nowrap;word-break:keep-all;overflow-wrap:normal;flex-shrink:0}
+html.ui-compact #mapEditor .map-side{flex:0 1 30%;height:30%;max-height:min(260px,30%)}
+html.ui-compact #mapEditor .map-side-content{padding:6px 10px;overscroll-behavior:contain}
+html.ui-compact #mapEditor .map-side-tabs{padding:2px 8px;gap:4px;flex-wrap:nowrap;flex-shrink:0}
+html.ui-compact #mapEditor .map-side-tabs button{min-height:36px}
+html.ui-compact #mapEditor .map-dock{display:flex;flex-wrap:wrap;justify-content:flex-start;align-content:flex-start;width:max-content;max-width:calc(100% - 12px - var(--ui-safe-left) - var(--ui-safe-right));max-height:42%;overflow:auto;padding:3px;gap:0;scrollbar-width:thin}
+html.ui-compact #mapEditor:not(.is-world) #mapTools{order:0;flex:1 1 calc(100% - 30px);display:flex;flex-wrap:wrap;justify-content:flex-start;min-width:0;gap:0}
+html.ui-compact #mapEditor #mapDockFold{order:-1;flex:0 0 26px;min-width:26px;padding:3px!important;align-self:flex-start;border-left:0!important}
+html.ui-compact #mapEditor #mapTools>button{flex:1 0 36px;min-width:36px;min-height:40px;max-width:64px;padding:4px!important}
+html.ui-compact #mapEditor #mapTools>#mapCreate{flex:1 0 56px;min-width:56px}
+html.ui-compact #mapEditor #mapTools>button .map-tool-label{display:none}
+html.ui-compact #mapEditor #mapTools>.map-tools-fold{display:none}
+html.ui-compact #mapEditor .map-tool-svg{width:22px;height:22px;flex:none}
+html.ui-compact #mapEditor .map-dock>:is(#mapCrossRoomControl,#mapBackground,#mapLayerCreate,#mapDisplay,#mapUnlockAll,#mapAssist){order:1;flex:1 0 auto;min-height:40px;border-left:0!important}
+html.ui-compact #mapEditor #mapCrossRoomEdit{font-size:calc(12px * var(--ui-text-scale, 1));min-height:40px;padding:4px 5px!important}
+html.ui-compact #mapEditor .map-layer-create{flex-wrap:nowrap;justify-content:center}
+html.ui-compact #mapEditor .map-layer-create button{font-size:calc(12px * var(--ui-text-scale, 1));min-height:40px;padding:4px}
+html.ui-compact #mapEditor #mapAssist{flex:0 0 28px;padding:3px!important}
+html.ui-compact #mapEditor.is-world #mapTools{display:flex;flex:0 1 auto;justify-content:flex-start}
+html.ui-compact #mapEditor.is-world #mapTools>button{flex:none;max-width:none;padding:4px 6px!important}
+html.ui-compact #mapEditor.is-world .map-dock{max-width:calc(100% - 12px);align-items:center}
+html.ui-compact #mapEditor .map-dock.dock-folded{width:auto}
+html.ui-compact #mapEditor #mapTools .map-brush-popover{display:grid;grid-template-columns:repeat(auto-fit,minmax(70px,1fr));gap:2px}
+html.ui-compact #mapEditor .map-layer-switch{left:6px;bottom:var(--dock-clearance);font-size:calc(12px * var(--ui-text-scale, 1))}
+html.ui-compact #mapEditor .map-layer-switch button{min-height:36px;padding:4px 8px}
+html.ui-short #mapEditor .map-side{flex:0 0 40%;width:40%;max-width:40%;height:100%;max-height:100%;border-left:1px solid var(--line)}
+html.ui-compact #mapEditor .map-header-actions{gap:0 2px}
+html.ui-compact #mapEditor .map-header-actions>button{font-size:calc(13px * var(--ui-text-scale, 1));padding:4px}
+html.ui-compact #mapEditor .map-header-actions>:is(#mapDisplaySettings,#mapMenu){flex:0 0 32px;width:32px;min-width:32px;padding:4px}
+html.ui-compact #mapEditor .map-dock>:is(#mapBackground,#mapDisplay,#mapUnlockAll){font-size:calc(12px * var(--ui-text-scale, 1))!important;padding:4px!important}
+html.ui-compact #mapEditor .map-layer-create button{font-size:calc(12px * var(--ui-text-scale, 1))!important;padding:4px 3px!important}
+html.ui-compact #mapEditor #mapAssist{flex:0 0 24px;min-width:24px}
+#mapSideResize{display:none}
+html.ui-compact #mapEditor .map-side{flex:0 0 var(--map-panel-extent,30%);height:var(--map-panel-extent,30%);max-height:70%;min-height:0}
+html.ui-compact #mapEditor #mapSideResize{display:flex;flex:none;align-items:center;justify-content:center;width:100%;min-height:24px;height:24px;padding:0;border:0;touch-action:none;cursor:ns-resize}
+#mapSideResize span{width:44px;height:3px;background:#aaa}
+html.ui-short #mapEditor .map-side{flex-basis:var(--map-panel-extent,40%);width:var(--map-panel-extent,40%);max-width:70%;height:100%;max-height:100%}
+html.ui-short #mapEditor #mapSideResize{cursor:ew-resize}
+#mapEditor #mapWorldMove{display:flex;align-items:center;gap:4px;width:auto;max-width:none;white-space:nowrap}
+#mapEditor #mapWorldMove .map-tool-svg{width:18px;height:18px}
+#mapEditor .map-region-hover{fill:#fff;fill-opacity:.04;stroke:#fff;stroke-width:1;stroke-dasharray:4 4;animation:map-title-pulse 1.8s steps(3,end) infinite;pointer-events:none}
+#mapEditor .map-pearl-card{max-width:min(240px,calc(100% - 16px));max-height:min(190px,60%);overflow:auto;box-sizing:border-box;pointer-events:auto;font-size:calc(13px * var(--ui-text-scale, 1))}
+#mapEditor .map-pearl-card p{max-height:4.5em;overflow:auto;margin:6px 0}
+#mapEditor .map-pearl-card .map-row{justify-content:space-between;flex-wrap:nowrap}
+#mapEditor .map-pearl-card button{min-height:36px;white-space:nowrap;padding:4px 8px}
+.map-record-results{max-height:48vh;overflow:auto;min-width:0}
+.map-record-result{display:flex;flex-direction:column;text-align:left;gap:4px;width:100%;padding:10px;min-width:0}
+.map-record-result small{color:#aaa;overflow-wrap:anywhere;font-size:.85em}
+.map-record-binding{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.map-record-binding strong{flex:1 1 100%;overflow-wrap:anywhere}
+
+@media(prefers-reduced-motion:reduce){#mapEditor .map-region-hover{animation:none}}
+
+html.ui-short #mapEditor #mapSideResize{display:flex;flex:none;align-items:center;justify-content:center;width:100%;height:24px;min-height:24px;padding:0;border:0;touch-action:none;cursor:ew-resize}

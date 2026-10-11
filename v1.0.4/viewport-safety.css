@@ -1,0 +1,43 @@
+html{width:100%;height:100%;overflow:hidden;scrollbar-gutter:auto;--ui-viewport-width:100vw;--ui-viewport-height:100dvh;--ui-viewport-left:0px;--ui-viewport-top:0px;--ui-layout-width:calc(100vw / var(--ui-page-scale,1));--ui-layout-height:calc(100dvh / var(--ui-page-scale,1));--ui-safe-top:calc(env(safe-area-inset-top,0px) / var(--ui-page-scale,1));--ui-safe-right:calc(env(safe-area-inset-right,0px) / var(--ui-page-scale,1));--ui-safe-bottom:calc(env(safe-area-inset-bottom,0px) / var(--ui-page-scale,1));--ui-safe-left:calc(env(safe-area-inset-left,0px) / var(--ui-page-scale,1))}
+body{position:fixed;left:calc(var(--ui-viewport-left) / var(--ui-page-scale,1));top:calc(var(--ui-viewport-top) / var(--ui-page-scale,1));width:var(--ui-layout-width);height:var(--ui-layout-height);max-width:none;margin:0;overflow:hidden;zoom:var(--ui-page-scale,1)}
+.list-screen,.detail-screen,body.map-active .list-screen{width:100%;height:100%!important;max-height:100%;min-width:0;box-sizing:border-box}
+body[data-standalone-storage="temporary"] .list-screen,body[data-standalone-storage="temporary"] .detail-screen{height:calc(100% - var(--standalone-warning-height,64px))!important}
+.list-screen,.detail-screen{padding-left:max(16px,var(--ui-safe-left));padding-right:max(16px,var(--ui-safe-right))}
+.list-header{padding-top:calc(12px + var(--ui-safe-top));min-width:0;max-width:100%;flex-wrap:wrap;gap:8px}
+.list-header .project-switcher{min-width:0;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.list-header .list-actions{min-width:0;max-width:100%;margin-left:auto;flex-wrap:wrap;gap:8px}
+.bottom-tabs,body.map-active .bottom-tabs{margin:0;padding:8px max(10px,var(--ui-safe-right)) calc(8px + var(--ui-safe-bottom)) max(10px,var(--ui-safe-left));gap:clamp(4px,3vw,40px);flex:0 0 auto;max-height:25%;min-width:0;overflow:auto;box-sizing:border-box}
+.bottom-tabs>button,body.map-active .bottom-tabs>button{flex:1 1 0;min-width:0;max-width:100%;white-space:normal;overflow-wrap:anywhere}
+body.map-active .list-screen{max-width:none;padding:0;overflow:hidden}
+#mapEditor{width:100%;max-width:100%;min-width:0;min-height:0;overflow:hidden}
+#mapEditor .map-top{padding:calc(10px + var(--ui-safe-top)) max(12px,var(--ui-safe-right)) 6px max(12px,var(--ui-safe-left));gap:8px;min-width:0;min-height:0;flex-wrap:wrap;align-content:start;max-height:32%;overflow:auto}
+#mapEditor .map-top #mapProject{flex:1 1 9em;max-width:100%;min-width:0;white-space:normal;overflow-wrap:anywhere}
+#mapEditor .map-header-actions{display:flex;flex:0 1 auto;flex-wrap:wrap;justify-content:flex-end;gap:4px 10px;max-width:100%;min-width:0;margin-left:auto}
+#mapEditor .map-header-actions>button{flex:0 0 auto;max-width:100%}
+#mapEditor .map-subbar{padding:0 max(10px,var(--ui-safe-right)) 6px max(10px,var(--ui-safe-left));min-width:0;min-height:0;max-height:18%;overflow:auto}
+#mapEditor .map-crumb{max-width:100%;min-width:0;flex-wrap:wrap;white-space:normal;overflow:auto}
+#mapEditor .map-crumb>button{flex:0 1 auto;min-width:0;max-width:100%;white-space:normal;overflow-wrap:anywhere}
+#mapEditor .map-body{width:100%;min-width:0;min-height:0;overflow:hidden}
+#mapEditor .map-stage{min-width:0;min-height:0;overflow:hidden}
+#mapEditor .map-dock{box-sizing:border-box;width:max-content;max-width:calc(100% - 16px - var(--ui-safe-left) - var(--ui-safe-right));min-width:0;right:calc(8px + var(--ui-safe-right));bottom:8px;flex-wrap:wrap;max-height:55%;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;align-content:start}
+#mapEditor #mapTools{display:flex;flex:0 1 auto;max-width:100%;min-width:0;flex-wrap:wrap}
+#mapEditor .map-dock>*,#mapEditor #mapTools>*{min-width:0;max-width:100%}
+#mapEditor .map-dock button{white-space:normal;overflow-wrap:anywhere}
+#mapEditor[data-toolbar=top] .map-dock{top:8px;bottom:auto;left:50%;right:auto;transform:translateX(-50%)}
+#mapEditor[data-toolbar=bottom] .map-dock{left:50%;right:auto;transform:translateX(-50%)}
+#mapEditor .map-float,#mapEditor .map-preview-float{max-width:calc(100% - 16px);max-height:calc(100% - 16px);overflow:auto;box-sizing:border-box}
+#mapEditor .map-float{left:calc(8px + var(--ui-safe-left));top:8px}
+#mapEditor .map-side{max-width:calc(100% - 16px);min-width:0;overflow:hidden}
+#mapEditor .map-side-tabs{flex-wrap:wrap;min-width:0;overflow:auto;flex-shrink:0}
+#mapEditor .map-side-content{min-width:0;overflow:auto}
+#mapEditor .map-layer-switch{left:calc(8px + var(--ui-safe-left));max-width:calc(100% - 16px - var(--ui-safe-left) - var(--ui-safe-right));max-height:25%;overflow:auto;box-sizing:border-box}
+html.ui-compact #mapEditor .map-header-actions{flex:1 1 100%;justify-content:flex-end}
+html.ui-compact #mapEditor .map-top #mapProject{flex-basis:100%}
+html.ui-compact #mapEditor .map-side{position:absolute;inset:0 0 0 auto;width:min(280px,88%);z-index:8}
+html.ui-compact #mapEditor .map-layer-create{flex:0 1 auto;flex-wrap:wrap}
+dialog.sheet,dialog.map-dialog,dialog.ui-font-dialog,dialog.iterator-dialog,html.ui-large dialog.sheet,html.ui-large dialog.map-dialog,html.ui-large dialog.ui-font-dialog,html.ui-large dialog.iterator-dialog{box-sizing:border-box;max-width:calc(var(--ui-layout-width) - 24px - var(--ui-safe-left) - var(--ui-safe-right));max-height:calc(var(--ui-layout-height) - 24px - var(--ui-safe-top) - var(--ui-safe-bottom));width:min(620px,calc(var(--ui-layout-width) - 24px - var(--ui-safe-left) - var(--ui-safe-right)));overflow:auto;overscroll-behavior:contain}
+dialog input,dialog select,dialog textarea{box-sizing:border-box;max-width:100%;min-width:0}
+dialog .sheet-heading,dialog .sheet-actions,dialog .map-actions{flex-wrap:wrap;min-width:0}
+.map-dropdown,html.ui-large .map-dropdown{box-sizing:border-box;max-width:calc(var(--ui-layout-width) - 16px - var(--ui-safe-left) - var(--ui-safe-right));min-width:min(195px,calc(var(--ui-layout-width) - 16px - var(--ui-safe-left) - var(--ui-safe-right)));max-height:calc(var(--ui-layout-height) - 24px - var(--ui-safe-top) - var(--ui-safe-bottom));overflow:auto;overscroll-behavior:contain}
+.map-dropdown button{min-width:0;white-space:normal;overflow-wrap:anywhere}
+#listMenuDialog{right:calc(12px + var(--ui-safe-right));top:calc(60px + var(--ui-safe-top));max-height:calc(var(--ui-layout-height) - 84px - var(--ui-safe-top) - var(--ui-safe-bottom));margin:0;bottom:auto;left:auto}
